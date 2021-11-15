@@ -110,18 +110,35 @@ function machine() {
     cancel.addEventListener('click', cancelEst);
 }
 
+let laserOp = ['Finished', 'Brake', 'Hardware', 'Tap', 'Mill', 'Roll', 'Cancel'];
+
 function laserOps() {
     removeButtons()    
-    document.body.appendChild(finished);
-    document.body.appendChild(brake);
-    document.body.appendChild(hard);
-    document.body.appendChild(tap);
-    document.body.appendChild(mill);
-    document.body.appendChild(roll);
-    document.body.appendChild(cancel);
-    finished.addEventListener('click', review);
-    cancel.addEventListener('click', cancelEst);
+    // document.body.appendChild(finished);
+    // document.body.appendChild(brake);
+    // document.body.appendChild(hard);
+    // document.body.appendChild(tap);
+    // document.body.appendChild(mill);
+    // document.body.appendChild(roll);
+    // document.body.appendChild(cancel);
+    // finished.addEventListener('click', review);
+    // cancel.addEventListener('click', cancelEst);
+    laserOp.forEach(option => {
+        let button = document.createElement('button');
+        console.log(option)
+        button.innerHTML = option; 
+        button.id = option;
+        document.body.appendChild(button);
+    })
 }
+
+function chosenOp(chosen) {
+    let selectedButton = chosen.target;
+    console.log(selectedButton)
+}
+
+
+
 
 function tlaserOps() {
     removeButtons()
