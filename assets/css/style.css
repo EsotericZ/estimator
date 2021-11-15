@@ -17,7 +17,7 @@ body {
     justify-content: center;
     align-items: center;
     width: 100%;
-    background-color: rgb(80, 6, 80);
+    background-color: lightgrey;
 }
   
 #headq {
@@ -28,7 +28,7 @@ body {
 }
   
 #startEst, #individual, #assembly {
-      background-color: lightgrey;
+      background-color: rgb(245, 11, 245);
       border-radius: 15px;
       color: black;
       display: grid;
@@ -43,6 +43,48 @@ body {
 
 #laser, #tlaser, #slaser, #saw, #punch {
     background-color: rgb(16, 247, 16);
+    border-radius: 15px;
+    color: black;
+    display: grid;
+    font-size: 22px;
+    line-height: 22px;
+    margin: 16px 16px 16px 20px;
+    padding: 14px 34px;
+    text-align: center;
+    cursor: pointer;
+    border: solid black;
+}
+
+#brake, #hard, #roll, #iron, #tube, #mill, #lathe, #tap, #spot, #weld, #robot {
+    background-color: skyblue;
+    border-radius: 15px;
+    color: black;
+    display: grid;
+    font-size: 22px;
+    line-height: 22px;
+    margin: 16px 16px 16px 20px;
+    padding: 14px 34px;
+    text-align: center;
+    cursor: pointer;
+    border: solid black;
+}
+
+#finished {
+    background-color: gold;
+    border-radius: 15px;
+    color: black;
+    display: grid;
+    font-size: 22px;
+    line-height: 22px;
+    margin: 16px 16px 16px 20px;
+    padding: 14px 34px;
+    text-align: center;
+    cursor: pointer;
+    border: solid black;
+}
+
+#cancel {
+    background-color: red;
     border-radius: 15px;
     color: black;
     display: grid;
