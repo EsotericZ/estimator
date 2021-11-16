@@ -41,6 +41,21 @@ body {
       border: solid black;
 }
 
+#off {
+    background-color: grey;
+    border-radius: 15px;
+    color: black;
+    display: grid;
+    font-size: 22px;
+    font-style: italic;
+    line-height: 22px;
+    margin: 16px 16px 16px 20px;
+    padding: 14px 34px;
+    text-align: center;
+    cursor: not-allowed;
+    border: solid black;
+}
+
 #laser, #tlaser, #slaser, #saw, #punch {
     background-color: rgb(16, 247, 16);
     border-radius: 15px;
@@ -55,8 +70,8 @@ body {
     border: solid black;
 }
 
-#brake, #hard, #roll, #iron, #tube, #mill, #lathe, #tap, #spot, #weld, #robot {
-    background-color: skyblue;
+#Brake, #Hardware, #Roll, #Iron, #Tube, #Mill, #Lathe, #Tap, #Spot, #Weld, #Robot {
+    background-color: rgb(168, 167, 167);
     border-radius: 15px;
     color: black;
     display: grid;
@@ -69,7 +84,22 @@ body {
     border: solid black;
 }
 
-#Finished {
+#selected {
+    background-color: skyblue;
+    border-radius: 15px;
+    color: black;
+    display: grid;
+    font-size: 22px;
+    font-style: italic;
+    line-height: 22px;
+    margin: 16px 16px 16px 20px;
+    padding: 14px 34px;
+    text-align: center;
+    cursor: pointer;
+    border: solid black;
+}
+
+#finished {
     background-color: gold;
     border-radius: 15px;
     color: black;

@@ -38,50 +38,54 @@ punch.innerHTML = "Punch";
 punch.id = "punch";
 
 // OPERATIONS
-let brake = document.createElement("button");
-brake.innerHTML = "Press Brake";
-brake.id = "brake";
-let hard = document.createElement("button");
-hard.innerHTML = "Hardware";
-hard.id = "hard";
-let roll = document.createElement("button");
-roll.innerHTML = "Roll Form";
-roll.id = "roll";
-let iron = document.createElement("button");
-iron.innerHTML = "Iron";
-iron.id = "iron";
-let tube = document.createElement("button");
-tube.innerHTML = "Tube Bender";
-tube.id = "tube";
-let mill = document.createElement("button");
-mill.innerHTML = "Mill";
-mill.id = "mill";
-let lathe = document.createElement("button");
-lathe.innerHTML = "Lathe";
-lathe.id = "lathe";
-let tap = document.createElement("button");
-tap.innerHTML = "Tap";
-tap.id = "tap";
-let spot = document.createElement("button");
-spot.innerHTML = "Spot Weld";
-spot.id = "spot";
-let weld = document.createElement("button");
-weld.innerHTML = "Weld";
-weld.id = "weld";
-let robot = document.createElement("button");
-robot.innerHTML = "Robot";
-robot.id = "robot";
+// let brake = document.createElement("button");
+// brake.innerHTML = "Press Brake";
+// brake.id = "brake";
+// let hard = document.createElement("button");
+// hard.innerHTML = "Hardware";
+// hard.id = "hard";
+// let roll = document.createElement("button");
+// roll.innerHTML = "Roll Form";
+// roll.id = "roll";
+// let iron = document.createElement("button");
+// iron.innerHTML = "Iron";
+// iron.id = "iron";
+// let tube = document.createElement("button");
+// tube.innerHTML = "Tube Bender";
+// tube.id = "tube";
+// let mill = document.createElement("button");
+// mill.innerHTML = "Mill";
+// mill.id = "mill";
+// let lathe = document.createElement("button");
+// lathe.innerHTML = "Lathe";
+// lathe.id = "lathe";
+// let tap = document.createElement("button");
+// tap.innerHTML = "Tap";
+// tap.id = "tap";
+// let spot = document.createElement("button");
+// spot.innerHTML = "Spot Weld";
+// spot.id = "spot";
+// let weld = document.createElement("button");
+// weld.innerHTML = "Weld";
+// weld.id = "weld";
+// let robot = document.createElement("button");
+// robot.innerHTML = "Robot";
+// robot.id = "robot";
 
 // ALL BUTTONS
-let buttons = [startEst, cancel, finished, back, individual, 
-    assembly, laser, tlaser, slaser, saw, punch, brake, hard,
-    roll, iron, tube, mill, lathe, tap, spot, weld, robot];
+// let buttons = [startEst, cancel, finished, back, individual, 
+//     assembly, laser, tlaser, slaser, saw, punch, brake, hard,
+//     roll, iron, tube, mill, lathe, tap, spot, weld, robot];
 
+let buttons = [startEst, cancel, finished, back, individual, 
+    assembly, laser, tlaser, slaser, saw, punch];    
 
 
 // START //
 
 let estimate = [];
+let laserOp = [];
+let laserChosen = 0;
 document.body.appendChild(startEst);
 startEst.addEventListener('click', quoteType);
 
@@ -91,7 +95,11 @@ function quoteType() {
     document.body.appendChild(assembly);
     document.body.appendChild(cancel);
     individual.addEventListener('click', machine);
+    assembly.disabled = true;
+    assembly.id = "off";
     cancel.addEventListener('click', cancelEst);
+    // laserOp = ['Finished', 'Brake', 'Hardware', 'Tap', 'Weld', 'Mill', 'Roll', 'Cancel'];
+    laserOp = ['Brake', 'Hardware', 'Tap', 'Weld', 'Mill', 'Roll'];
 }
 
 function machine() {
@@ -110,35 +118,67 @@ function machine() {
     cancel.addEventListener('click', cancelEst);
 }
 
-let laserOp = ['Finished', 'Brake', 'Hardware', 'Tap', 'Mill', 'Roll', 'Cancel'];
-
 function laserOps() {
-    removeButtons()    
-    // document.body.appendChild(finished);
-    // document.body.appendChild(brake);
-    // document.body.appendChild(hard);
-    // document.body.appendChild(tap);
-    // document.body.appendChild(mill);
-    // document.body.appendChild(roll);
-    // document.body.appendChild(cancel);
-    // finished.addEventListener('click', review);
-    // cancel.addEventListener('click', cancelEst);
+    if (!estimate.includes("101 ENGIN")) {
+        estimate.push("101 ENGIN", "203 LASER");
+    }
+    laserChosen = 1;
+    console.log(estimate)
+    removeButtons()  
+    document.body.appendChild(finished);
     laserOp.forEach(option => {
         let button = document.createElement('button');
-        console.log(option)
         button.innerHTML = option; 
         button.id = option;
+        button.classList.add("button");
         document.body.appendChild(button);
+        button.addEventListener('click', function() {
+            if (button.id === "selected") {
+                button.id = option;
+                button.name = "";
+            } else {
+                button.id = "selected";
+                button.name = option;
+            }
+        });
     })
+    document.body.appendChild(cancel);
+    finished.addEventListener("click", finishLaser);
+}
+
+function finishLaser() {
+    removeButtons()
+    for (let i = 0; i < laserOp.length; i++) {
+        let num = document.getElementsByClassName("button");
+        console.log(num[0])
+        if (num[0].id === "selected") {
+            estimate.push(num[0].name)
+        }
+        document.body.removeChild(num[0]);
+    }
+    console.log('laser review')
+    console.log(estimate)
 }
 
 function chosenOp(chosen) {
-    let selectedButton = chosen.target;
-    console.log(selectedButton)
+    // for (let i = 0; i < laserOp.length; i++) {
+    //     let num = document.getElementsByClassName("button");
+    //     document.body.removeChild(num[0]);
+    // }
+    // let selectedButton = chosen.target;
+    // estimate.push(selectedButton.id)
+    // let index = laserOp.indexOf(selectedButton.id);
+    // if (index > -1) {
+    //     laserOp.splice(index, 1);
+    // }
+    // if (selectedButton.id === "Finished") {
+    //     review()
+    // } else if (selectedButton.id == "Cancel") {
+    //     cancelEst()
+    // } else {
+    //     laserOps()
+    // }
 }
-
-
-
 
 function tlaserOps() {
     removeButtons()
@@ -162,6 +202,12 @@ function review() {
 
 function cancelEst() {
     removeButtons()
+    if (laserChosen === 1) {
+        for (let i = 0; i < laserOp.length; i++) {
+            let num = document.getElementsByClassName("button");
+            document.body.removeChild(num[0]);
+        }
+    }
     estimate = [];
     document.body.appendChild(startEst);
     startEst.addEventListener('click', quoteType);
