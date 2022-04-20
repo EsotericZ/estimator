@@ -87,30 +87,41 @@ let buttons = [startEst, cancel, finished, back, individual,
     assembly, laser, tlaser, slaser, saw, punch];    
 
 // VARIABLES
-let materials = [
-    '',
-    'CRS', 
-    'HRS', 
-    'ALS',
-    'SSS',
-    'SSS316',
-    'CU',
+let empty = [''];
+
+let carbonMaterials = [
+    'CRS',
+    'HRS',
 ];
 
-let empty = [];
+let stainlessMaterials = [
+    'SSS',
+    'SSS316',
+];
 
-let carbon = [
+let aluminumMaterials = [
+    'ALS',
+    'ALS6061',
+    'ALS-PVC',
+];
+
+let allMaterials = empty.concat(carbonMaterials).concat(stainlessMaterials).concat(aluminumMaterials);
+
+let carbonThickness = [
+    '',
     '11Ga',
     '12Ga',
     '13Ga',
 ];
 
-let stainless = [
+let stainlessThickness = [
+    '',
     'New',
     'Old',
 ];
 
-let aluminum = [
+let aluminumThickness = [
+    '',
     'Why',
     'Try',
 ];
@@ -129,7 +140,7 @@ startEst.addEventListener('click', materialSelection);
 function materialSelection() {
     removeButtons()
     document.body.appendChild(materialType);
-    materials.forEach((x) => {
+    allMaterials.forEach((x) => {
         materialType.appendChild(new Option(x, x));
     })
     materialType.onchange = thicknessSelection;
@@ -143,16 +154,17 @@ function thicknessSelection() {
     } else {
         document.body.appendChild(materialThick);
     }
-    if ((material === 'CRS') || (material === 'HRS')) {
-        carbon.forEach((thick) => {
+    // if ((material === 'CRS') || (material === 'HRS')) {
+    if (carbonMaterials.includes(material)) {
+        carbonThickness.forEach((thick) => {
             materialThick.appendChild(new Option(thick, thick));
         });
-    } else if ((material === 'SSS') || (material === 'SSS316')) {
-        stainless.forEach((thick) => {
+    } else if (stainlessMaterials.includes(material)) {
+        stainlessThickness.forEach((thick) => {
             materialThick.appendChild(new Option(thick, thick));
         });
-    } else if ((material === 'ALS') || (material === 'AL')) {
-        aluminum.forEach((thick) => {
+    } else if (aluminumMaterials.includes(material)) {
+        aluminumThickness.forEach((thick) => {
             materialThick.appendChild(new Option(thick, thick));
         });
     } else {
@@ -160,6 +172,16 @@ function thicknessSelection() {
             materialThick.appendChild(new Option(thick, thick));
         });
     }
+    materialThick.onchange = firstOp;
+}
+
+const firstOp = () => {
+    document.body.appendChild(laser);
+    laser.addEventListener('click', laserOps);
+    document.body.appendChild(slaser);
+    slaser.addEventListener('click', slaserOps);
+    document.body.appendChild(punch);
+    punch.addEventListener('click', punchOps);
 }
 
 function quoteType() {
@@ -178,16 +200,16 @@ function quoteType() {
 function machine() {
     removeButtons()    
     document.body.appendChild(laser);
-    document.body.appendChild(tlaser);
-    document.body.appendChild(slaser);
-    document.body.appendChild(punch);
-    document.body.appendChild(saw);
-    document.body.appendChild(cancel);
     laser.addEventListener('click', laserOps);
+    document.body.appendChild(tlaser);
     tlaser.addEventListener('click', tlaserOps);
+    document.body.appendChild(slaser);
     slaser.addEventListener('click', slaserOps);
+    document.body.appendChild(punch);
     punch.addEventListener('click', punchOps);
+    document.body.appendChild(saw);
     saw.addEventListener('click', sawOps);
+    document.body.appendChild(cancel);
     cancel.addEventListener('click', cancelEst);
 }
 
@@ -197,7 +219,8 @@ function laserOps() {
     }
     laserChosen = 1;
     console.log(estimate)
-    removeButtons()  
+    removeLists();
+    removeButtons();
     document.body.appendChild(finished);
     laserOp.forEach(option => {
         let button = document.createElement('button');
@@ -292,4 +315,10 @@ function removeButtons() {
             document.body.removeChild(buttons[i]);
         }
     }
+}
+
+const removeLists = () => {
+    // let removeMaterialThick = document.body.getElementById('materialThick');
+    document.body.removeChild(materialThick);
+    document.body.removeChild(materialType);
 }
