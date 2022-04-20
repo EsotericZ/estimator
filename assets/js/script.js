@@ -12,6 +12,12 @@ let back = document.createElement("button");
 back.innerHTML = "Back";
 back.id = "back";
 
+// MATERIAL SELECTION
+let materialType = document.createElement("select");
+materialType.id = "materialType";
+let materialThick = document.createElement("select");
+materialThick.id = "materialThick";
+
 // QUOTE TYPE
 let individual = document.createElement("button");
 individual.innerHTML = "Individual Part";
@@ -80,6 +86,35 @@ punch.id = "punch";
 let buttons = [startEst, cancel, finished, back, individual, 
     assembly, laser, tlaser, slaser, saw, punch];    
 
+// VARIABLES
+let materials = [
+    '',
+    'CRS', 
+    'HRS', 
+    'ALS',
+    'SSS',
+    'SSS316',
+    'CU',
+];
+
+let empty = [];
+
+let carbon = [
+    '11Ga',
+    '12Ga',
+    '13Ga',
+];
+
+let stainless = [
+    'New',
+    'Old',
+];
+
+let aluminum = [
+    'Why',
+    'Try',
+];
+
 
 // START //
 
@@ -87,7 +122,45 @@ let estimate = [];
 let laserOp = [];
 let laserChosen = 0;
 document.body.appendChild(startEst);
-startEst.addEventListener('click', quoteType);
+// startEst.addEventListener('click', quoteType);
+startEst.addEventListener('click', materialSelection);
+
+
+function materialSelection() {
+    removeButtons()
+    document.body.appendChild(materialType);
+    materials.forEach((x) => {
+        materialType.appendChild(new Option(x, x));
+    })
+    materialType.onchange = thicknessSelection;
+}
+
+function thicknessSelection() {
+    let material = materialType.value;
+    let materialThickExist = document.getElementById('materialThick');
+    if (typeof(materialThickExist) != 'undefined' && materialThickExist != null) {
+        materialThick.innerHTML = "";
+    } else {
+        document.body.appendChild(materialThick);
+    }
+    if ((material === 'CRS') || (material === 'HRS')) {
+        carbon.forEach((thick) => {
+            materialThick.appendChild(new Option(thick, thick));
+        });
+    } else if ((material === 'SSS') || (material === 'SSS316')) {
+        stainless.forEach((thick) => {
+            materialThick.appendChild(new Option(thick, thick));
+        });
+    } else if ((material === 'ALS') || (material === 'AL')) {
+        aluminum.forEach((thick) => {
+            materialThick.appendChild(new Option(thick, thick));
+        });
+    } else {
+        empty.forEach((thick) => {
+            materialThick.appendChild(new Option(thick, thick));
+        });
+    }
+}
 
 function quoteType() {
     removeButtons()    
