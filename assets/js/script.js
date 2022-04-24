@@ -91,12 +91,20 @@ let empty = [''];
 
 let carbonMaterials = [
     'CRS',
-    'HRS',
+    'GALV',
+    'A572',
 ];
+
+let hotRolledMaterials = [
+    'HRS',
+]
 
 let stainlessMaterials = [
     'SSS',
     'SSS316',
+    'SSS-PVC-2B',
+    'SSS-PVC-4',
+    'SSS-PVC-8',
 ];
 
 let aluminumMaterials = [
@@ -112,6 +120,10 @@ let carbonThickness = [
     '11Ga',
     '12Ga',
     '13Ga',
+    '14Ga',
+    '16Ga',
+    '18Ga',
+
 ];
 
 let stainlessThickness = [
