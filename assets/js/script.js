@@ -83,6 +83,8 @@ punch.id = "punch";
 //     assembly, laser, tlaser, slaser, saw, punch, brake, hard,
 //     roll, iron, tube, mill, lathe, tap, spot, weld, robot];
 
+// add quick quote refs
+
 let buttons = [startEst, cancel, finished, back, individual, 
     assembly, laser, tlaser, slaser, saw, punch];    
 
