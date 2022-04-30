@@ -87,6 +87,11 @@ punch.id = "punch";
 // make it pretty
 // one day ill hjave time to work on this
 
+//laser/form
+//laser
+//laser/tap
+//laser/tap/form
+
 let buttons = [startEst, cancel, finished, back, individual, 
     assembly, laser, tlaser, slaser, saw, punch];    
 
