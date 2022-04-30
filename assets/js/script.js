@@ -85,6 +85,7 @@ punch.id = "punch";
 
 // add quick quote refs
 // make it pretty
+// one day ill hjave time to work on this
 
 let buttons = [startEst, cancel, finished, back, individual, 
     assembly, laser, tlaser, slaser, saw, punch];    
