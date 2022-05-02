@@ -91,6 +91,7 @@ punch.id = "punch";
 //laser
 //laser/tap
 //laser/tap/form
+// may is the month of new beginings
 
 let buttons = [startEst, cancel, finished, back, individual, 
     assembly, laser, tlaser, slaser, saw, punch];    
